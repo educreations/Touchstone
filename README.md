@@ -18,6 +18,8 @@ Well, Touchstone is here to solve this problem.
 
 ## Example
 
+Setup Touchstone with the following code:
+
 ```objective-c
 // Standard Defaults
 NSDictionary *defaults = @{
@@ -35,6 +37,22 @@ Touchstone *touchstone = [Touchstone standardUserDefaults];
                debugDefaults:debugDefaults
                        debug:(DEBUG == 1)];
 ```
+
+Then, you can use it just like you would NSUserDefaults:
+
+```objective-c
+BOOL loggingEnabled = [[Touchstone standardUserDefaults] boolForKey:kLoggingEnabledKey];
+```
+
+On a debug project, this will return the value that is persisted in the NSUserDefaults. On non-debug builds, this will return the default value, _or_ the last value that was set. So if you later do a:
+
+```objective-c
+Touchstone *touchstone = [Touchstone standardUserDefaults];
+[touchstone setBool:YES forKey:kLoggingEnabledKey];
+[touchstone synchronize];
+```
+
+Then, subsequent calls in non-debug builds, for the rest of the current session, will be to get the value of `kLoggingEnabledKey` will return `YES`. However, if you restart the app, or reconfigure Touchstone, `kLoggingEnabledKey` will then return the default, which in this example is `NO`.
 
 ## Installation
 
