@@ -2,6 +2,10 @@
 
 **Easy defaults for use in debugging and production.**
 
+Touchstone makes it easy to create defaults that are persistent in debug builds, while being volatile in non-debug builds. In non-debug builds, debug defaults can be written to, and retrieved, but are reset at the next session. While in debug builds, these same debug defaults are persisted between sessions. Touchstone is built as a subclass on NSUserDefaults and is designed to be a drop-in replacement.
+
+## Problem
+
 `NSUserDefaults` is a great way to save settings that should be configured in your app. And you'll find yourself registering those settings at app startup with `registerDefaults:`. What happens though when you want some settings to be overrideable when debugging (through a secret debug menu), and yet still be persistent? However, when the app is not a debug build, those settings should always be the defaults. In this case, you'll have lots of places in your code like the following:
 
 ```objective-c
