@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <Group
+      location = "group:Touchstone"
+      name = "Touchstone">
+      <FileRef
+         location = "group:NSUserDefaults+Touchstone.h">
+      </FileRef>
+      <FileRef
+         location = "group:NSUserDefaults+Touchstone.m">
+      </FileRef>
+      <FileRef
+         location = "group:Touchstone.h">
+      </FileRef>
+      <FileRef
+         location = "group:Touchstone.m">
+      </FileRef>
+   </Group>
+   <FileRef
+      location = "group:Example/Touchstone Example.xcodeproj">
+   </FileRef>
+</Workspace>
