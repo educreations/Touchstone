@@ -19,7 +19,21 @@ Well, Touchstone is here to solve this problem.
 ## Example
 
 ```objective-c
-TODO
+// Standard Defaults
+NSDictionary *defaults = @{
+    kFirstLaunchKey: @(YES),
+};
+
+// Debug Defaults
+NSDictionary *debugDefaults = @{
+    kLoggingEnabledKey: @(NO),
+};
+
+// Setup Touchstone
+Touchstone *touchstone = [Touchstone standardUserDefaults];
+[touchstone registerDefaults:defaults
+               debugDefaults:debugDefaults
+                       debug:(DEBUG == 1)];
 ```
 
 ## Installation
