@@ -54,6 +54,8 @@ Touchstone *touchstone = [Touchstone standardUserDefaults];
 
 Then, subsequent calls in non-debug builds, for the rest of the current session, will be to get the value of `kLoggingEnabledKey` will return `YES`. However, if you restart the app, or reconfigure Touchstone, `kLoggingEnabledKey` will then return the default, which in this example is `NO`.
 
+Check out the example project included and play around with debug vs. non-debug builds to see how it reacts.
+
 ## Installation
 
 Use Cocoapods to install or use a git submodule. Then include the necessary categories.
