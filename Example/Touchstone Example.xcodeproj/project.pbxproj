@@ -16,6 +16,7 @@
 		D96A0BE117A1A52000F2882F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D96A0BE017A1A52000F2882F /* ViewController.m */; };
 		D9F891D517A1D6F200505BEF /* Touchstone.m in Sources */ = {isa = PBXBuildFile; fileRef = D9F891D417A1D6F200505BEF /* Touchstone.m */; };
 		D9F891D817A1E9BA00505BEF /* Defaults.m in Sources */ = {isa = PBXBuildFile; fileRef = D9F891D717A1E9B900505BEF /* Defaults.m */; };
+		D9FD0D0917A3514B00A3870F /* NSUserDefaults+Touchstone.m in Sources */ = {isa = PBXBuildFile; fileRef = D9FD0D0817A3507000A3870F /* NSUserDefaults+Touchstone.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,8 @@
 		D9F891D417A1D6F200505BEF /* Touchstone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Touchstone.m; sourceTree = "<group>"; };
 		D9F891D617A1E9B900505BEF /* Defaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Defaults.h; sourceTree = "<group>"; };
 		D9F891D717A1E9B900505BEF /* Defaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Defaults.m; sourceTree = "<group>"; };
+		D9FD0D0717A3507000A3870F /* NSUserDefaults+Touchstone.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+Touchstone.h"; sourceTree = "<group>"; };
+		D9FD0D0817A3507000A3870F /* NSUserDefaults+Touchstone.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+Touchstone.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +110,8 @@
 		D9F891CC17A1AA4500505BEF /* Touchstone */ = {
 			isa = PBXGroup;
 			children = (
+				D9FD0D0717A3507000A3870F /* NSUserDefaults+Touchstone.h */,
+				D9FD0D0817A3507000A3870F /* NSUserDefaults+Touchstone.m */,
 				D9F891D317A1D6F200505BEF /* Touchstone.h */,
 				D9F891D417A1D6F200505BEF /* Touchstone.m */,
 			);
@@ -181,6 +186,7 @@
 				D96A0BE117A1A52000F2882F /* ViewController.m in Sources */,
 				D9F891D517A1D6F200505BEF /* Touchstone.m in Sources */,
 				D9F891D817A1E9BA00505BEF /* Defaults.m in Sources */,
+				D9FD0D0917A3514B00A3870F /* NSUserDefaults+Touchstone.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
