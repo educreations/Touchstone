@@ -8,7 +8,7 @@
 #import "ViewController.h"
 
 #import "Defaults.h"
-#import "Touchstone.h"
+#import "NSUserDefaults+Touchstone.h"
 
 @interface ViewController ()
 
@@ -27,16 +27,19 @@
         CGRectGetMidY(self.view.bounds),
     };
     s.frame = switchFrame;
-    s.on = [[Touchstone standardUserDefaults] boolForKey:kLoggingEnabledKey];
+    s.on = [[NSUserDefaults standardUserDefaults] boolForKey:kLoggingEnabledKey];
     [s addTarget:self action:@selector(switchDidChange:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:s];
 }
 
 - (void)switchDidChange:(UISwitch *)aSwitch
 {
-    Touchstone *touchstone = [Touchstone standardUserDefaults];
-    [touchstone setBool:aSwitch.on forKey:kLoggingEnabledKey];
-    [touchstone synchronize];
+    NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
+    [standardDefaults setBool:aSwitch.on forKey:kLoggingEnabledKey];
+
+    // This needs to be called, even if isVolatile is set to true. We might have saved
+    // a non-volatile key that should be persisted.
+    [standardDefaults synchronize];
 }
 
 @end

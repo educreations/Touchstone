@@ -8,7 +8,7 @@
 #import "AppDelegate.h"
 
 #import "Defaults.h"
-#import "Touchstone.h"
+#import "NSUserDefaults+Touchstone.h"
 #import "ViewController.h"
 
 @implementation AppDelegate
@@ -21,15 +21,15 @@
     };
 
     // Debug Defaults
-    NSDictionary *debugDefaults = @{
+    NSDictionary *volatileDefaults = @{
         kLoggingEnabledKey: @(NO),
     };
 
     // Setup Touchstone
-    Touchstone *touchstone = [Touchstone standardUserDefaults];
-    [touchstone registerDefaults:defaults
-                   debugDefaults:debugDefaults
-                           debug:(DEBUG == 1)];
+    NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
+    [standardDefaults registerDefaults:defaults
+                      volatileDefaults:volatileDefaults
+                            isVolatile:(!DEBUG)];
 
     // Setup the view hierarchy
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -65,8 +65,8 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    Touchstone *touchstone = [Touchstone standardUserDefaults];
-    [touchstone setObject:@(NO) forKey:kFirstLaunchKey];
+    NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
+    [standardDefaults setObject:@(NO) forKey:kFirstLaunchKey];
 }
 
 @end
