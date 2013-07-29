@@ -10,12 +10,6 @@
       <FileRef
          location = "group:NSUserDefaults+Touchstone.m">
       </FileRef>
-      <FileRef
-         location = "group:Touchstone.h">
-      </FileRef>
-      <FileRef
-         location = "group:Touchstone.m">
-      </FileRef>
    </Group>
    <FileRef
       location = "group:Example/Touchstone Example.xcodeproj">

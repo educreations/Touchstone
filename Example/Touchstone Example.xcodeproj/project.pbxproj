@@ -14,7 +14,6 @@
 		D96A0BDC17A1A4F000F2882F /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = D96A0BD717A1A4F000F2882F /* Default.png */; };
 		D96A0BDE17A1A4F000F2882F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D96A0BD917A1A4F000F2882F /* main.m */; };
 		D96A0BE117A1A52000F2882F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D96A0BE017A1A52000F2882F /* ViewController.m */; };
-		D9F891D517A1D6F200505BEF /* Touchstone.m in Sources */ = {isa = PBXBuildFile; fileRef = D9F891D417A1D6F200505BEF /* Touchstone.m */; };
 		D9F891D817A1E9BA00505BEF /* Defaults.m in Sources */ = {isa = PBXBuildFile; fileRef = D9F891D717A1E9B900505BEF /* Defaults.m */; };
 		D9FD0D0917A3514B00A3870F /* NSUserDefaults+Touchstone.m in Sources */ = {isa = PBXBuildFile; fileRef = D9FD0D0817A3507000A3870F /* NSUserDefaults+Touchstone.m */; };
 /* End PBXBuildFile section */
@@ -32,8 +31,6 @@
 		D96A0BDA17A1A4F000F2882F /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		D96A0BDF17A1A52000F2882F /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		D96A0BE017A1A52000F2882F /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		D9F891D317A1D6F200505BEF /* Touchstone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Touchstone.h; sourceTree = "<group>"; };
-		D9F891D417A1D6F200505BEF /* Touchstone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Touchstone.m; sourceTree = "<group>"; };
 		D9F891D617A1E9B900505BEF /* Defaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Defaults.h; sourceTree = "<group>"; };
 		D9F891D717A1E9B900505BEF /* Defaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Defaults.m; sourceTree = "<group>"; };
 		D9FD0D0717A3507000A3870F /* NSUserDefaults+Touchstone.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+Touchstone.h"; sourceTree = "<group>"; };
@@ -112,8 +109,6 @@
 			children = (
 				D9FD0D0717A3507000A3870F /* NSUserDefaults+Touchstone.h */,
 				D9FD0D0817A3507000A3870F /* NSUserDefaults+Touchstone.m */,
-				D9F891D317A1D6F200505BEF /* Touchstone.h */,
-				D9F891D417A1D6F200505BEF /* Touchstone.m */,
 			);
 			name = Touchstone;
 			path = ../Touchstone;
@@ -184,7 +179,6 @@
 				D96A0BDB17A1A4F000F2882F /* AppDelegate.m in Sources */,
 				D96A0BDE17A1A4F000F2882F /* main.m in Sources */,
 				D96A0BE117A1A52000F2882F /* ViewController.m in Sources */,
-				D9F891D517A1D6F200505BEF /* Touchstone.m in Sources */,
 				D9F891D817A1E9BA00505BEF /* Defaults.m in Sources */,
 				D9FD0D0917A3514B00A3870F /* NSUserDefaults+Touchstone.m in Sources */,
 			);
