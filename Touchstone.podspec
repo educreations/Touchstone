@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "Touchstone"
-  s.version      = "0.1"
+  s.version      = "0.2"
   s.summary      = "Easy defaults for use in debugging and production."
   s.description  = <<-DESC
       Touchstone makes it easy to create defaults that are persistent in debug builds, while being volatile in non-debug builds.
