@@ -9,8 +9,10 @@
 
 @interface NSUserDefaults (Touchstone)
 
+@property (nonatomic, readonly) BOOL isVolatile;
+
 - (void)registerDefaults:(NSDictionary *)registrationDictionary
         volatileDefaults:(NSDictionary *)volatileRegistrationDictionary
-                volatile:(BOOL)isVolatile;
+              isVolatile:(BOOL)isVolatile;
 
 @end

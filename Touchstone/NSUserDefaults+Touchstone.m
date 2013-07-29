@@ -26,7 +26,19 @@ static char kTSIsVolatileObjectKey;
 static char kTSVolatileDictionaryObjectKey;
 
 
+@interface NSUserDefaults (_Touchstone)
+
+@property (nonatomic, readwrite) BOOL isVolatile;
+@property (nonatomic, readwrite, strong) NSMutableDictionary *volatileDictionary;
+
+@end
+
+#pragma mark -
+#pragma mark - NSUserDefaults+Touchstone
+
 @implementation NSUserDefaults (Touchstone)
+
+@dynamic isVolatile;
 
 #pragma mark -
 #pragma mark - Class Loading
@@ -43,7 +55,7 @@ static char kTSVolatileDictionaryObjectKey;
 
 - (void)registerDefaults:(NSDictionary *)registrationDictionary
         volatileDefaults:(NSDictionary *)volatileRegistrationDictionary
-                volatile:(BOOL)isVolatile
+              isVolatile:(BOOL)isVolatile
 {
     // Register the standard defaults. These are volatile unless overriden by
     // the user.
@@ -53,11 +65,11 @@ static char kTSVolatileDictionaryObjectKey;
                                                                                     copyItems:YES];
 
     // Keep track of some state
-    objc_setAssociatedObject(self, &kTSIsVolatileObjectKey, @(isVolatile), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    objc_setAssociatedObject(self, &kTSVolatileDictionaryObjectKey, volatileDictionary, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    [self setIsVolatile:isVolatile];
+    [self setVolatileDictionary:volatileDictionary];
 
-    // Save the default volatile registration values. These are persisted. However, we don't overwrite existing
-    // values.
+    // Save the default volatile registration values. These are persisted. However, we don't
+    // want to overwrite existing values.
     for (id key in volatileDictionary) {
         if ([self objectForKey:key] == nil) {
             [self setObject:[volatileDictionary objectForKey:key]
@@ -71,48 +83,74 @@ static char kTSVolatileDictionaryObjectKey;
 
 - (id)ts_objectForKey:(NSString *)defaultName
 {
-    // If we are not debugging, then we want to return the default object
+    // If we have volatile defaults, then we want to return the default object
     // for the key if it exists. Otherwise, revert back to the super
     // implementation.
-    BOOL isVolatile = [self ts_isVolatile];
-    NSMutableDictionary *volatileDictionary = [self ts_volatileDictionary];
+    BOOL isVolatile = [self isVolatile];
+    NSMutableDictionary *volatileDictionary = [self volatileDictionary];
 
-    if (!isVolatile && [volatileDictionary objectForKey:defaultName] != nil) {
+    if (isVolatile && [volatileDictionary objectForKey:defaultName] != nil) {
         return [volatileDictionary objectForKey:defaultName];
     }
 
+    // Refer to the original method, which was swizzled.
     return [self ts_objectForKey:defaultName];
 }
 
 - (void)ts_setObject:(id)value forKey:(NSString *)defaultName
 {
-    // If we are not debugging, and this is a debug key, then we want to store it as a volatile
-    // value. So we replace the value stored in our debugRegistrationDictionary. This way the value
-    // can be continued to be re-read this session. But the next time we configure Touchstone,
-    // we'll get the default value. Otherwise, use the super implementation which will persist the
-    // value.
-    BOOL isVolatile = [self ts_isVolatile];
-    NSMutableDictionary *volatileDictionary = [self ts_volatileDictionary];
+    // If we have volatile defaults, and this is a volatile key, then we want to store it as a
+    // volatile value. So we replace the value stored in our volatileRegistrationDictionary. This
+    // way the value can be continued to be re-read this session. But the next time we configure
+    // Touchstone, we'll get the default value. Otherwise, use the super implementation which will
+    // persist the value.
+    BOOL isVolatile = [self isVolatile];
+    NSMutableDictionary *volatileDictionary = [self volatileDictionary];
 
-    if (!isVolatile && [volatileDictionary objectForKey:defaultName] != nil) {
+    if (isVolatile && [volatileDictionary objectForKey:defaultName] != nil) {
         [volatileDictionary setObject:[value copy] forKey:defaultName];
     } else {
+        // Refer to the original method, which was swizzled.
         [self ts_setObject:value forKey:defaultName];
     }
 }
 
-#pragma mark -
-#pragma mark - Helpers
 
-- (BOOL)ts_isVolatile
+#pragma mark -
+#pragma mark - Internal Property Accessors
+
+- (BOOL)isVolatile
 {
     NSNumber *boolNumber = (NSNumber *)objc_getAssociatedObject(self, &kTSIsVolatileObjectKey);
     return [boolNumber boolValue];
 }
 
-- (NSMutableDictionary *)ts_volatileDictionary
+@end
+
+#pragma mark -
+#pragma mark - NSUserDefaults+_Touchstone
+
+@implementation NSUserDefaults (_Touchstone)
+
+@dynamic isVolatile;
+@dynamic volatileDictionary;
+
+#pragma mark -
+#pragma mark - Internal Property Accessors
+
+- (void)setIsVolatile:(BOOL)isVolatile
+{
+    objc_setAssociatedObject(self, &kTSIsVolatileObjectKey, @(isVolatile), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (NSMutableDictionary *)volatileDictionary
 {
     return (NSMutableDictionary *)objc_getAssociatedObject(self, &kTSVolatileDictionaryObjectKey);
+}
+
+- (void)setVolatileDictionary:(NSMutableDictionary *)volatileDictionary
+{
+    objc_setAssociatedObject(self, &kTSVolatileDictionaryObjectKey, volatileDictionary, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 @end
