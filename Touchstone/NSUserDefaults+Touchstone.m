@@ -106,7 +106,9 @@ static char kTSVolatileDictionaryObjectKey;
     NSMutableDictionary *volatileDictionary = [self volatileDictionary];
 
     if (isVolatile && [volatileDictionary objectForKey:defaultName] != nil) {
+        [self willChangeValueForKey:defaultName];
         [volatileDictionary setObject:[value copy] forKey:defaultName];
+        [self didChangeValueForKey:defaultName];
     } else {
         // Refer to the original method, which was swizzled.
         [self ts_setObject:value forKey:defaultName];
