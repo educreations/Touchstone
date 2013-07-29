@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
   s.description  = <<-DESC
       Touchstone makes it easy to create defaults that are persistent in debug builds, while being volatile in non-debug builds.
 
-      In non-debug builds, debug defaults can be written to, and retrieved, but are reset at the next session. While in debug builds, these same debug defaults are persisted between sessions. Touchstone is built as a subclass on NSUserDefaults and is designed to be a drop-in replacement.
+      In non-debug builds, defaults specified as volatile, are not persisted but can be written and read from. The next time defaults are registered (ex. app startup), those defaults are set to the value passed in. Touchstone is built as a category on NSUserDefaults and is designed to work with your code with minimal changes.
   DESC
   s.homepage     = "https://github.com/educreations/Touchstone"
   s.license = {
@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
   }
 
   s.author       = { "Chris Streeter" => "chris@educreations.com" }
-  s.source       = { :git => "https://github.com/educreations/Touchstone.git", :tag => "v0.1" }
+  s.source       = { :git => "https://github.com/educreations/Touchstone.git", :tag => "v0.2" }
 
   s.ios.deployment_target = '5.0'
   s.osx.deployment_target = '10.7'
