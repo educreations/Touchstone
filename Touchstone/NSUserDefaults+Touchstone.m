@@ -68,13 +68,11 @@ static char kTSVolatileDictionaryObjectKey;
     [self setIsVolatile:isVolatile];
     [self setVolatileDictionary:volatileDictionary];
 
-    // Save the default volatile registration values. These are persisted. However, we don't
-    // want to overwrite existing values.
-    for (id key in volatileDictionary) {
-        if ([self objectForKey:key] == nil) {
-            [self setObject:[volatileDictionary objectForKey:key]
-                     forKey:key];
-        }
+    // If we are not volatile, then treat the volatileDictionary as normal registration defaults.
+    // Otherwise, the volatile defaults will be handled by our custom object getter and setter
+    // overrides.
+    if (!self.isVolatile) {
+        [self registerDefaults:volatileRegistrationDictionary];
     }
 }
 
