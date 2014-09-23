@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   s.author       = { "Chris Streeter" => "chris@educreations.com" }
   s.source       = { :git => "https://github.com/educreations/Touchstone.git", :tag => "v0.2" }
 
-  s.ios.deployment_target = '5.0'
+  s.ios.deployment_target = '7.0'
   s.osx.deployment_target = '10.7'
 
   s.source_files = 'Touchstone'
