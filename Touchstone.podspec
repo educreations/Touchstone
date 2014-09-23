@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "Touchstone"
-  s.version      = "0.2"
+  s.version      = "0.3"
   s.summary      = "Easy defaults for use in debugging and production."
   s.description  = <<-DESC
       Touchstone makes it easy to create defaults that are persistent in debug builds, while being volatile in non-debug builds.
@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
   }
 
   s.author       = { "Chris Streeter" => "chris@educreations.com" }
-  s.source       = { :git => "https://github.com/educreations/Touchstone.git", :tag => "v0.2" }
+  s.source       = { :git => "https://github.com/educreations/Touchstone.git", :tag => "v0.3" }
 
   s.ios.deployment_target = '7.0'
   s.osx.deployment_target = '10.7'
