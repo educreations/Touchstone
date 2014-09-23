@@ -46,8 +46,17 @@ static char kTSVolatileDictionaryObjectKey;
 + (void)load
 {
     // Swizzle for fun and profit
-    TSSwizzleInstanceMethods(self, @selector(objectForKey:), @selector(ts_objectForKey:));
-    TSSwizzleInstanceMethods(self, @selector(setObject:forKey:), @selector(ts_setObject:forKey:));
+    NSArray *types = @[@"object", @"integer", @"float", @"double", @"bool"];
+    for (NSString *type in types) {
+        NSString *fromGetter = [NSString stringWithFormat:@"%@ForKey:", type];
+        NSString *toGetter = [NSString stringWithFormat:@"ts_%@ForKey:", type];
+
+        NSString *fromSetter = [NSString stringWithFormat:@"set%@:forKey:", type.capitalizedString];
+        NSString *toSetter = [NSString stringWithFormat:@"ts_set%@:forKey:", type.capitalizedString];
+
+        TSSwizzleInstanceMethods(self, NSSelectorFromString(fromGetter), NSSelectorFromString(toGetter));
+        TSSwizzleInstanceMethods(self, NSSelectorFromString(fromSetter), NSSelectorFromString(toSetter));
+    }
 }
 
 #pragma mark -
@@ -113,6 +122,50 @@ static char kTSVolatileDictionaryObjectKey;
         // Refer to the original method, which was swizzled.
         [self ts_setObject:value forKey:defaultName];
     }
+}
+
+- (NSInteger)ts_integerForKey:(NSString *)defaultName
+{
+    NSNumber *number = [self objectForKey:defaultName];
+    return number.integerValue;
+}
+
+- (void)ts_setInteger:(NSInteger)value forKey:(NSString *)defaultName
+{
+    [self setObject:@(value) forKey:defaultName];
+}
+
+- (float)ts_floatForKey:(NSString *)defaultName
+{
+    NSNumber *number = [self objectForKey:defaultName];
+    return number.floatValue;
+}
+
+- (void)ts_setFloat:(float)value forKey:(NSString *)defaultName
+{
+    [self setObject:@(value) forKey:defaultName];
+}
+
+- (double)ts_doubleForKey:(NSString *)defaultName
+{
+    NSNumber *number = [self objectForKey:defaultName];
+    return number.doubleValue;
+}
+
+- (void)ts_setDouble:(double)value forKey:(NSString *)defaultName
+{
+    [self setObject:@(value) forKey:defaultName];
+}
+
+- (BOOL)ts_boolForKey:(NSString *)defaultName
+{
+    NSNumber *number = [self objectForKey:defaultName];
+    return number.boolValue;
+}
+
+- (void)ts_setBool:(BOOL)value forKey:(NSString *)defaultName
+{
+    [self setObject:@(value) forKey:defaultName];
 }
 
 
