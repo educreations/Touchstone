@@ -119,7 +119,7 @@ Check out the example project included and play around with setting the value of
 
 ## Installation
 
-Use Cocoapods to install or use a git submodule. Then include the necessary categories.
+Use CocoaPods to install or use a git submodule. Then include the necessary categories.
 
 ## Contact
 
